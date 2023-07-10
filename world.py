@@ -1,6 +1,6 @@
-import pygame     
+import pygame
 from pipe import Pipe
-from settings import WIDTH, pipe_size, pipe_gap, pipe_pair_sizes
+from settings import WIDTH, HEIGHT, pipe_size, pipe_gap, pipe_pair_sizes
 import random
 
 class World:
@@ -18,8 +18,8 @@ class World:
 		pipe_pair_size = random.choice(pipe_pair_sizes)
 		top_pipe_height, bottom_pipe_height = pipe_pair_size[0] * pipe_size, pipe_pair_size[1] * pipe_size
 
-		pipe_top = Pipe((WIDTH, 0 - (bottom_pipe_height + pipe_gap)), pipe_size, 700, True)
-		pipe_bottom = Pipe((WIDTH, top_pipe_height + pipe_gap), pipe_size, 700, False)
+		pipe_top = Pipe((WIDTH, 0 - (bottom_pipe_height + pipe_gap)), pipe_size, HEIGHT, True)
+		pipe_bottom = Pipe((WIDTH, top_pipe_height + pipe_gap), pipe_size, HEIGHT, False)
 		self.pipes.add(pipe_top)
 		self.pipes.add(pipe_bottom)
 		self.current_pipe = pipe_top
