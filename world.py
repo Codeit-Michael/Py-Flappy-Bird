@@ -18,15 +18,15 @@ class World:
 		pipe_pair_size = random.choice(pipe_pair_sizes)
 		top_pipe_height, bottom_pipe_height = pipe_pair_size[0] * pipe_size, pipe_pair_size[1] * pipe_size
 
-		pipe_top = Pipe((WIDTH, 0), pipe_size, top_pipe_height)
-		pipe_bottom = Pipe((WIDTH, top_pipe_height + pipe_gap), pipe_size, bottom_pipe_height)
+		pipe_top = Pipe((WIDTH, 0 - (bottom_pipe_height + pipe_gap)), pipe_size, 700, True)
+		pipe_bottom = Pipe((WIDTH, top_pipe_height + pipe_gap), pipe_size, 700, False)
 		self.pipes.add(pipe_top)
 		self.pipes.add(pipe_bottom)
 		self.current_pipe = pipe_top
 
 	def scroll_x(self):
 		if self.start_game:
-			self.world_shift = 8
+			self.world_shift = -2
 		else:
 			self.world_shift = 0
 
@@ -37,6 +37,9 @@ class World:
 		pass
 
 	def update(self):
+		# trigger once user start to play, cancelled once user loss
+		# self.scroll_x()
+
 		if self.current_pipe.rect.centerx  == WIDTH // 2:
 			self.add_pipe()
 		
