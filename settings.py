@@ -1,16 +1,25 @@
-WIDTH, HEIGHT = 450, 700
+WIDTH, HEIGHT = 600, 700
 
-pipe_size = 50
-pipe_gap = 150
 pipe_pair_sizes = [
-	(1, 10),
-	(2, 9),
-	(3, 8),
-	(4, 7),
-	(5, 6),
-	(6, 5),
-	(7, 4),
-	(8, 3),
-	(9, 2),
-	(10, 1)
+	(1, 7),
+	(2, 6),
+	(3, 5),
+	(4, 4),
+	(5, 3),
+	(6, 2),
+	(7, 1)
 ]
+pipe_size = HEIGHT // 10
+pipe_gap = pipe_size * 2
+
+from os import walk
+import pygame
+
+def import_sprite(path):
+	surface_list = []
+	for _, __, img_file in walk(path):
+		for image in img_file:
+			full_path = f"{path}/{image}"
+			img_surface = pygame.image.load(full_path).convert_alpha()
+			surface_list.append(img_surface)
+	return surface_list
