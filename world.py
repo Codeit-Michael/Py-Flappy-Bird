@@ -13,7 +13,7 @@ class World:
 		self.pipes = pygame.sprite.Group()
 		self.player = pygame.sprite.GroupSingle()
 		self._generate_world()
-		self.start_game = False
+		self.start_play = False
 
 	def _generate_world(self):
 		self._add_pipe()
@@ -31,7 +31,7 @@ class World:
 		self.current_pipe = pipe_top
 
 	def scroll_x(self):
-		if self.start_game:
+		if self.start_play:
 			self.world_shift = -2
 		else:
 			self.world_shift = 0
@@ -42,7 +42,7 @@ class World:
 	def handle_collisions(self):
 		pass
 
-	def update(self):
+	def update(self, player_event):
 		# trigger once user start to play, cancelled once user loss
 		# self.scroll_x()
 
@@ -52,5 +52,8 @@ class World:
 		self.pipes.update(self.world_shift)
 		self.pipes.draw(self.screen)
 
-		self.player.update()
+		# self.scroll_x()
+
+		self.player.update(player_event)
+		# print(player_event)
 		self.player.draw(self.screen)

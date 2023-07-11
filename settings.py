@@ -10,7 +10,7 @@ pipe_pair_sizes = [
 	(7, 1)
 ]
 pipe_size = HEIGHT // 10
-pipe_gap = pipe_size * 2
+pipe_gap = (pipe_size * 2) + (pipe_size // 2)
 
 from os import walk
 import pygame

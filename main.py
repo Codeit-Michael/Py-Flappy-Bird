@@ -12,6 +12,7 @@ class Main:
 		self.screen = screen
 		self.bg_img = pygame.image.load('assets/terrain/bg.png')
 		self.bg_img = pygame.transform.scale(self.bg_img, (WIDTH, HEIGHT))
+		self.click = False
 
 	def main(self):
 		world = World(screen)
@@ -23,7 +24,14 @@ class Main:
 					pygame.quit()
 					sys.exit()
 
-			world.update()
+				elif event.type == pygame.KEYDOWN:
+					if event.key == pygame.K_SPACE:
+						self.click = "jump"
+			
+				elif event.type == pygame.KEYUP:
+					self.click = False
+
+			world.update(self.click)
 			pygame.display.update()
 
 if __name__ == "__main__":
