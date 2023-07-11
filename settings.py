@@ -1,4 +1,4 @@
-WIDTH, HEIGHT = 600, 700
+WIDTH, HEIGHT = 600, 680
 
 pipe_pair_sizes = [
 	(1, 7),

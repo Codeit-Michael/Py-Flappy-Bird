@@ -13,8 +13,8 @@ class Bird(pygame.sprite.Sprite):
 		self.mask = pygame.mask.from_surface(self.image)
 
 		self.direction = pygame.math.Vector2(0, 0)
-		self.jump_move = -5
-		self.gravity = 0.3
+		self.jump_move = -7
+		self.gravity = 0.2
 		self.game_over = False
 
 	def _animate(self):

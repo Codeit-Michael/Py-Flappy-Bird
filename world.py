@@ -42,7 +42,7 @@ class World:
 	def handle_collisions(self):
 		pass
 
-	def update(self, player_event):
+	def update(self, player_event = None):
 		# trigger once user start to play, cancelled once user loss
 		# self.scroll_x()
 
