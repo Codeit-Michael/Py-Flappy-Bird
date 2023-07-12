@@ -13,8 +13,7 @@ class Bird(pygame.sprite.Sprite):
 		self.mask = pygame.mask.from_surface(self.image)
 
 		self.direction = pygame.math.Vector2(0, 0)
-		self.jump_move = -7
-		self.gravity = 0.2
+		self.jump_move = -4
 		self.game_over = False
 
 	def _animate(self):
@@ -27,15 +26,11 @@ class Bird(pygame.sprite.Sprite):
 		if self.frame_index // self.animation_delay > len(sprites):
 			self.frame_index = 0
 
-	def _apply_gravity(self):
-		self.direction.y += self.gravity
-		self.rect.y += self.direction.y
-
 	def _jump(self):
 		self.direction.y = self.jump_move
 
 	def update(self, player_event):
-		self._apply_gravity()
+		# self._apply_gravity()
 		if not self.game_over:
 			if player_event == "jump":
 				self._jump()

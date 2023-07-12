@@ -7,13 +7,15 @@ import random
 class World:
 	def __init__(self, screen):
 		self.screen = screen
-		self.world_shift = -2
+		self.world_shift = 0
 		self.current_x = 0
+		self.gravity = 0.1
 		self.current_pipe = None
 		self.pipes = pygame.sprite.Group()
 		self.player = pygame.sprite.GroupSingle()
 		self._generate_world()
-		self.start_play = False
+		self.playing = False
+		self.game_over = False
 
 	def _generate_world(self):
 		self._add_pipe()
@@ -30,30 +32,34 @@ class World:
 		self.pipes.add(pipe_bottom)
 		self.current_pipe = pipe_top
 
-	def scroll_x(self):
-		if self.start_play:
+	def _scroll_x(self):
+		if self.playing:
 			self.world_shift = -2
 		else:
 			self.world_shift = 0
 
-	def add_gravity(self):
-		pass
+	def _apply_gravity(self, player):
+		if self.playing or self.game_over:
+			player.direction.y += self.gravity
+			player.rect.y += player.direction.y
 
-	def handle_collisions(self):
-		pass
+	def _handle_collisions(self):
+		#look for collision
+		bird = self.player.sprite
+		if pygame.sprite.groupcollide(self.player, self.pipes, False, False) or bird.rect.bottom >= HEIGHT or bird.rect.top <= 0:
+			self.playing = False
+			self.game_over = True
 
 	def update(self, player_event = None):
-		# trigger once user start to play, cancelled once user loss
-		# self.scroll_x()
-
 		if self.current_pipe.rect.centerx  <= WIDTH // 2:
 			self._add_pipe()
 		
 		self.pipes.update(self.world_shift)
 		self.pipes.draw(self.screen)
 
-		# self.scroll_x()
+		self._apply_gravity(self.player.sprite)
+		self._scroll_x()
+		self._handle_collisions()
 
 		self.player.update(player_event)
-		# print(player_event)
 		self.player.draw(self.screen)

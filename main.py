@@ -24,6 +24,8 @@ class Main:
 					sys.exit()
 
 				elif event.type == pygame.KEYDOWN:
+					if not world.playing and not world.game_over:
+						world.playing = True
 					if event.key == pygame.K_SPACE:
 						world.update("jump")
 
