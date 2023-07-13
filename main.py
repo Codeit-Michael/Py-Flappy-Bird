@@ -12,6 +12,7 @@ class Main:
 		self.screen = screen
 		self.bg_img = pygame.image.load('assets/terrain/bg.png')
 		self.bg_img = pygame.transform.scale(self.bg_img, (WIDTH, HEIGHT))
+		self.FPS = pygame.time.Clock()
 
 	def main(self):
 		world = World(screen)
@@ -28,9 +29,12 @@ class Main:
 						world.playing = True
 					if event.key == pygame.K_SPACE:
 						world.update("jump")
+					if event.key == pygame.K_r:
+						world.update("restart")
 
 			world.update()
 			pygame.display.update()
+			self.FPS.tick(60)
 
 if __name__ == "__main__":
 	play = Main(screen)

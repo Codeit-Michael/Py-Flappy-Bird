@@ -3,6 +3,7 @@ import pygame
 class Pipe(pygame.sprite.Sprite):
 	def __init__(self, pos, width, height, flip):
 		super().__init__()
+		self.width = width
 		img_path = 'assets/terrain/pipe.png'
 		self.image = pygame.image.load(img_path)
 		self.image = pygame.transform.scale(self.image, (width, height))
@@ -14,3 +15,7 @@ class Pipe(pygame.sprite.Sprite):
 	# update object position due to world scroll
 	def update(self, x_shift):
 		self.rect.x += x_shift
+
+		# removes the pipe in the game screen once it is not shown in the screen anymore
+		if self.rect.right < (-self.width):
+			self.kill()
