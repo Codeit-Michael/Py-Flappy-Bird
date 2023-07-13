@@ -91,6 +91,9 @@ class World:
 		else:
 			player_event = False
 
+		if not self.playing:
+			self.game.instructions()
+
 		# updates, draws pipes
 		self.player.update(player_event)
 		self.player.draw(self.screen)
