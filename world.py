@@ -1,6 +1,7 @@
 import pygame
 from pipe import Pipe
 from bird import Bird
+from game import GameIndicator
 from settings import WIDTH, HEIGHT, pipe_size, pipe_gap, pipe_pair_sizes
 import random
 
@@ -17,6 +18,7 @@ class World:
 		self.playing = False
 		self.game_over = False
 		self.passed = True
+		self.game = GameIndicator(screen)
 
 	# creates the player and the obstacle
 	def _generate_world(self):
@@ -92,3 +94,5 @@ class World:
 		# updates, draws pipes
 		self.player.update(player_event)
 		self.player.draw(self.screen)
+
+		self.game.show_score(self.player.sprite.score)
