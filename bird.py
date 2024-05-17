@@ -34,6 +34,8 @@ class Bird(pygame.sprite.Sprite):
 	# to make the bird fly higher
 	def _jump(self):
 		self.direction.y = self.jump_move
+		whoosh = pygame.mixer.Sound("assets/sfx/whoosh.mp3")
+		whoosh.play()
 
 	# updates the bird's overall state
 	def update(self, is_jump):

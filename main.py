@@ -15,6 +15,8 @@ class Main:
 		self.FPS = pygame.time.Clock()
 
 	def main(self):
+		pygame.mixer.music.load("assets/sfx/bgm.wav")
+		pygame.mixer.music.play(-1)
 		world = World(screen)
 		while True:
 			self.screen.blit(self.bg_img, (0, 0))

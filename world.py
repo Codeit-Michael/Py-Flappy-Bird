@@ -55,7 +55,10 @@ class World:
 		bird = self.player.sprite
 		# for collision checking
 		if pygame.sprite.groupcollide(self.player, self.pipes, False, False) or bird.rect.bottom >= HEIGHT or bird.rect.top <= 0:
-			self.playing = False
+			if self.playing:
+				hit = pygame.mixer.Sound("assets/sfx/hit.wav")
+				hit.play()
+				self.playing = False
 			self.game_over = True
 		# for scoring 
 		else:
