@@ -35,6 +35,7 @@ class Bird(pygame.sprite.Sprite):
 	def _jump(self):
 		self.direction.y = self.jump_move
 		whoosh = pygame.mixer.Sound("assets/sfx/whoosh.mp3")
+		whoosh.set_volume(0.5)
 		whoosh.play()
 
 	# updates the bird's overall state

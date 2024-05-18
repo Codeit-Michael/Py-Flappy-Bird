@@ -17,6 +17,7 @@ class Main:
 	def main(self):
 		pygame.mixer.music.load("assets/sfx/bgm.wav")
 		pygame.mixer.music.play(-1)
+		pygame.mixer.music.set_volume(0.8)
 		world = World(screen)
 		while True:
 			self.screen.blit(self.bg_img, (0, 0))
